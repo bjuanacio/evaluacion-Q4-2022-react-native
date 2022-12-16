@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const giftListStyles = StyleSheet.create({
     rowContainer: {
         flex: 1,
-        flexDirection: 'row',
+        flexDirection: 'column',
         marginVertical: 8,
         padding: 4,
         borderWidth: 1,
@@ -27,4 +27,18 @@ export const giftListStyles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
     },
+    addRowContainer: {
+        flexDirection: 'row',
+        borderColor: 'violet',
+        marginTop: 16,
+    },
+    addRowItem1: {
+        flex: 1,
+    },
+    addTextInput: {
+        borderColor: 'gray',
+        borderRadius: 4,
+        borderWidth: 1,
+    }
+
 }); 

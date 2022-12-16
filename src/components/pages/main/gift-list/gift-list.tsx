@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Alert, Button, Image, SafeAreaView, Text, View } from 'react-native';
 import { List } from '../../../atoms'
-import { CustomInput, PressableButton } from '../../../molecules';
+import { PressableButton } from '../../../molecules';
 import { giftListStyles } from './gift-list.styles';
 import { string } from './gift-list.string';
 import { getGifts, removeGift, saveGift } from '../../../../services/gift-service/gift-service';
@@ -9,6 +9,7 @@ import { Gift } from '../../../../utils/interfaces/gift.interface';
 import { useGiftContext } from '../../../../context/gift-context/gift-context';
 import { commonStyle } from '../../../../utils/theme/common';
 import { ID_AUTHOR } from '../../../../utils/constants/urls';
+import { TextInput } from 'react-native-gesture-handler';
 
 export const GiftList = () => {
     const { gifts, setGifts } = useGiftContext();
@@ -57,7 +58,7 @@ export const GiftList = () => {
             }
             await saveGift(currentGift);
             await requestGifts();
-
+            setGift('');
         } catch (err) {
             console.log('.... error saving the gift ... ', err);
         }
@@ -81,13 +82,13 @@ export const GiftList = () => {
 
     const renderAddButton = () => {
         return (
-            <View style={commonStyle.buttonContainerScreen}>
-                <CustomInput name={string.giftURL} value={gift} setValue={setGift} />
-                <Button onPress={onAdd}
-                    title={string.add}></Button>
-                {/* <Button onPress={onAdd}>
-                    {string.add}
-                </Button> */}
+            <View style={[giftListStyles.addRowContainer]}>
+                <View style={giftListStyles.addRowItem1}>
+                    <TextInput style={giftListStyles.addTextInput} placeholder={string.giftURL} value={gift} onChangeText={setGift} />
+                </View>
+                <View>
+                    <Button onPress={onAdd} title={string.add} />
+                </View>
             </View>
         )
     }
@@ -97,6 +98,7 @@ export const GiftList = () => {
             commonStyle.mainMarginHorizontal,
             commonStyle.containerScreens,
         ]}>
+            {renderAddButton()}
             {gifts?.length > 0 ? (
                 <SafeAreaView style={[
                     commonStyle.containerScreens,
@@ -105,7 +107,7 @@ export const GiftList = () => {
                 </SafeAreaView>
 
             ) : <Text>{string.noGifts}</Text>}
-            {renderAddButton()}
+
         </View>
     );
 };
