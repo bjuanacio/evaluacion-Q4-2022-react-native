@@ -5,12 +5,17 @@ import {IconContainer, IconImage} from './icon.styles';
 interface IconProps {
   image: ImageSourcePropType;
   description: string;
+  iconStyle?: object;
 }
 
 const Icon: FC<IconProps> = props => {
   return (
     <IconContainer>
-      <IconImage testID={props.description} source={props.image} />
+      <IconImage
+        testID={props.description}
+        source={props.image}
+        style={props.iconStyle}
+      />
       <Text>{props.description}</Text>
     </IconContainer>
   );

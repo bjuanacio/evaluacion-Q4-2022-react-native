@@ -1,11 +1,11 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import Main from './components/pages/main/main';
+import Home from './components/pages/home/home';
 
 const App = () => {
   return (
     <SafeAreaView>
-      <Main />
+      <Home />
     </SafeAreaView>
   );
 };
