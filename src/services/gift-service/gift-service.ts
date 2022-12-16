@@ -10,8 +10,8 @@ const getGifts = (authorId: number) => {
   return get(`${API_URL}?author_id=${authorId}`);
 };
 
-const removeGift = (id: number | undefined) => {
-  return del(`${API_URL}/${id}`);
+const removeGift = (gift: Gift) => {
+  return del(`${API_URL}`, gift);
 };
 
 export { getGifts, removeGift, saveGift }

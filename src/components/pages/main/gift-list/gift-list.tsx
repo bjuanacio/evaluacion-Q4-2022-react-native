@@ -20,9 +20,8 @@ export const GiftList = () => {
 
     const requestGifts = async () => {
         try {
-            const gifts = await getGifts(ID_AUTHOR)
-            console.log('current gifts .... ', gifts);
-            setGifts(gifts)
+            const giftsResponse = await getGifts(ID_AUTHOR)
+            setGifts(giftsResponse)
         } catch (err) {
 
         }
@@ -31,6 +30,7 @@ export const GiftList = () => {
     const onRemove = (gift: Gift) => {
         Alert.alert(
             string.remove.title,
+            string.remove.message,
             [
                 {
                     text: string.remove.cancel,
@@ -42,7 +42,7 @@ export const GiftList = () => {
 
     const handleRemove = async (gift: Gift) => {
         try {
-            await removeGift(gift.id);
+            const response = await removeGift(gift);
             await requestGifts()
         } catch (err) {
             console.error('error => ', err)
@@ -50,13 +50,12 @@ export const GiftList = () => {
     }
 
     const onAdd = async () => {
-        const currentGift: Gift = {
-            author_id: ID_AUTHOR,
-            url: gift
-        }
         try {
-            const response = await saveGift(currentGift);
-            console.log('response .... ', response);
+            const currentGift: Gift = {
+                author_id: ID_AUTHOR,
+                url: gift
+            }
+            await saveGift(currentGift);
             await requestGifts();
 
         } catch (err) {
@@ -65,22 +64,19 @@ export const GiftList = () => {
     }
 
     const renderItem = (row: any) => {
+        const gift: Gift = row.item;
         return (
             <View style={[giftListStyles.rowContainer]}>
                 <View style={giftListStyles.item1}>
                     {/* <Image source={row.url} /> */}
-                    {row.url}
+                    <Text>{gift.url}</Text>
+
                 </View>
                 <View style={giftListStyles.buttonContainer}>
-                    <PressableButton handleClick={() => onRemove(row.item)} text={string.remove.title} />
+                    <PressableButton handleClick={() => onRemove(gift)} text={string.remove.title} />
                 </View>
             </View>
         )
-    }
-
-    const handleChangeText = (e) => {
-        console.log('eeee => ', e);
-        setGift(e);
     }
 
     const renderAddButton = () => {

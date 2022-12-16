@@ -13,10 +13,10 @@ const giftContextProps: GiftContextProps = {
 const GiftContext = createContext(giftContextProps);
 
 const useGiftProvider = () => {
-  const [gift, setGift] = useState([]);
+  const [gifts, setGifts] = useState([]);
   return {
-    gift,
-    setGift,
+    gifts,
+    setGifts,
   };
 };
 

@@ -56,14 +56,15 @@ async function post(url: string, data = {}) {
  * DELETE VERB
  * @param url 
  */
-async function del(url: string) {
+async function del(url: string, data = {}) {
     try {
         const response = (await fetch(url, {
             method: LOCAL.VERB.DELETE,
             headers: {
                 [LOCAL.HEADER.CONTENT_TYPE]: LOCAL.CONTENT_TYPE.JSON,
                 [LOCAL.HEADER.ACCEPT]: LOCAL.CONTENT_TYPE.JSON
-            }
+            },
+            body: JSON.stringify(data)
         }))
         return response
     } catch (err) {
