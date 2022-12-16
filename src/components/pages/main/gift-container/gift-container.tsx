@@ -3,15 +3,15 @@ import { Alert, Image, SafeAreaView, Text, View } from 'react-native';
 import { GiftAdd } from './gift-add/gift-add'
 import { List } from '../../../atoms'
 import { PressableButton } from '../../../molecules';
-import { giftListStyles } from './gift-list.styles';
-import { string } from './gift-list.string';
+import { giftListStyles } from './gift-container.styles';
+import { string } from './gift-container.string';
 import { getGifts, removeGift, saveGift } from '../../../../services/gift-service/gift-service';
 import { Gift } from '../../../../utils/interfaces/gift.interface';
 import { useGiftContext } from '../../../../context/gift-context/gift-context';
 import { commonStyle } from '../../../../utils/theme/common';
 import { ID_AUTHOR } from '../../../../utils/constants/urls';
 
-export const GiftList = () => {
+export const GiftContainer = () => {
     const { gifts, setGifts } = useGiftContext();
     const [gift, setGift] = useState('');
 
