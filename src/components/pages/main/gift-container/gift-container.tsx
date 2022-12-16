@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Alert, Image, SafeAreaView, FlatList, Text, View } from 'react-native';
 import { GiftAdd } from './gift-add/gift-add'
-
-import { List } from '../../../atoms'
 import { PressableButton } from '../../../molecules';
 import { giftListStyles } from './gift-container.styles';
 import { string } from './gift-container.string';
