@@ -83,7 +83,7 @@ export const GiftContainer = () => {
             commonStyle.mainMarginHorizontal,
             commonStyle.containerScreens,
         ]}>
-            <GiftAdd gift={gift} giftUrl={string.giftURL} setGift={setGift} onAdd={onAddGift} />
+            <GiftAdd gift={gift} giftPlh={string.giftURL} setGift={setGift} onAdd={onAddGift} />
             {gifts?.length > 0 ? (
                 <SafeAreaView style={[
                     commonStyle.containerScreens,
