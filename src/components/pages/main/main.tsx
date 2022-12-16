@@ -1,50 +1,41 @@
-import React, {FC} from 'react';
+import React, { FC } from 'react';
 import {
-  ColorIndicator,
-  ColorTitle,
   DocumentationContainer,
   DocumentationTitle,
-  ExternalLink,
-  RowContainer,
+  AddGifContainer,
 } from './main.styles';
-import {primary, background} from '../../../utils/theme/theme';
-import DeleteIcon from '../../../assets/delete-icon.png';
-import WarningIcon from '../../../assets/warning-icon.png';
-import Icon from '../../atoms/icon/icon';
-import {Linking, Text} from 'react-native';
-import {API_URL, GIFS_URL} from '../../../utils/constants/urls';
+import { Input } from '../../atoms/input/input'
+import { GifAddButton } from '../../atoms/button/button';
+import { useGifList } from '../../../hooks/use-gif-list'
+import { GifsList } from '../../molecules/gif-card/git-card';
 
 const Main: FC = () => {
+  const [gifList, setGifList] = React.useState([]);
+
+  const { gifs, getGifList } = useGifList()
+
+  React.useEffect(() => {
+
+    getGifList()
+
+  }, [])
+
+  React.useEffect(() => {
+    setGifList(gifs);
+  }, [gifs]);
+
   return (
     <DocumentationContainer>
       <DocumentationTitle headerTitle>
-        Evaluación Técnica Q4 2022
+        Gif Galery
       </DocumentationTitle>
-      <DocumentationTitle>Colores</DocumentationTitle>
-      <RowContainer haveBottomSpacing>
-        <ColorTitle>Principal</ColorTitle>
-        <ColorIndicator testID={`indicator-${primary}`} color={primary} />
-        <Text>{primary}</Text>
-      </RowContainer>
-      <RowContainer>
-        <ColorTitle>Fondo</ColorTitle>
-        <ColorIndicator testID={`indicator-${background}`} color={background} />
-        <Text>{background}</Text>
-      </RowContainer>
-      <DocumentationTitle>Íconos</DocumentationTitle>
-      <RowContainer>
-        <Icon image={DeleteIcon} description={'Delete Icon'} />
-        <Icon image={WarningIcon} description={'Warning Icon'} />
-      </RowContainer>
-
-      <DocumentationTitle>API REST</DocumentationTitle>
-      <ExternalLink onPress={() => Linking.openURL(API_URL)}>
-        Documentación de la API REST
-      </ExternalLink>
-      <DocumentationTitle>GIFs</DocumentationTitle>
-      <ExternalLink onPress={() => Linking.openURL(GIFS_URL)}>
-        Página de GIFs
-      </ExternalLink>
+      <AddGifContainer>
+        <Input />
+        <GifAddButton />
+      </AddGifContainer>
+      {gifList && <GifsList items={gifList} onPressItem={function (id: number): void {
+        throw new Error('Function not implemented.');
+      }} />}
     </DocumentationContainer>
   );
 };
