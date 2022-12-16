@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 export const giftAddStyles = StyleSheet.create({
   addRowContainer: {
     flexDirection: 'row',
-    borderColor: 'violet',
     marginTop: 16,
   },
   addRowItem1: {
@@ -13,6 +12,5 @@ export const giftAddStyles = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 4,
     borderWidth: 1,
-  }
-
-}); 
+  },
+});

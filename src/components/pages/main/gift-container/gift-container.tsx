@@ -69,14 +69,12 @@ export const GiftContainer = () => {
         return (
             <View style={[giftListStyles.rowContainer]}>
                 <View style={giftListStyles.item1}>
-                    {/* <Image source={row.url} /> */}
-                    <Text>{gift.url}</Text>
-
+                    <Image style={{ width: "100%", height: "100%" }} source={{ uri: gift.url }} />
                 </View>
                 <View style={giftListStyles.buttonContainer}>
                     <PressableButton handleClick={() => onRemove(gift)} text={string.remove.title} />
                 </View>
-            </View>
+            </View >
         )
     }
 

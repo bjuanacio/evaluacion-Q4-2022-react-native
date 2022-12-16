@@ -5,40 +5,18 @@ export const giftListStyles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         marginVertical: 8,
-        padding: 4,
+        padding: 0,
         borderWidth: 1,
-        borderColor: 'gray',
+        borderColor: 'red',
         borderRadius: 4,
-        boxShadow: "10px 10px 17px -12px rgba(0,0,0,0.75)"
+        height: 250,
     },
     item1: {
-        flex: 3
-    },
-    winner: {
-        backgroundColor: 'green'
-    },
-    loser: {
-        backgroundColor: 'gray'
+        flex: 2
     },
     buttonContainer: {
-        alignItems: 'center',
-        backgroundColor: '#CCC8D1',
-        flex: 2,
+        // alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'center',
     },
-    addRowContainer: {
-        flexDirection: 'row',
-        borderColor: 'violet',
-        marginTop: 16,
-    },
-    addRowItem1: {
-        flex: 1,
-    },
-    addTextInput: {
-        borderColor: 'gray',
-        borderRadius: 4,
-        borderWidth: 1,
-    }
-
 }); 
