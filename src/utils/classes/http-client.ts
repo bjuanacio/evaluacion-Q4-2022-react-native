@@ -23,9 +23,6 @@ async function get(url: string) {
     try {
         const response = (await fetch(url, {
             method: LOCAL.VERB.GET,
-            headers: {
-                'author': '26',
-            }
         })).json()
         return response
     } catch (err) {

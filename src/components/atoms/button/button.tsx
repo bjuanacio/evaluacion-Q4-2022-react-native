@@ -1,7 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { Text, ViewStyle } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { color } from '../../../utils/theme/colors';
 import styles from './button.styles';
 
 interface ButtonProps extends PropsWithChildren {

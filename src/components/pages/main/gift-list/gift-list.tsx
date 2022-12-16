@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react'
-import { Alert, Image, SafeAreaView, Text, View } from 'react-native';
-import { Button, List } from '../../../atoms'
-import { PressableButton } from '../../../molecules';
+import React, { useEffect, useState } from 'react'
+import { Alert, Button, Image, SafeAreaView, Text, View } from 'react-native';
+import { List } from '../../../atoms'
+import { CustomInput, PressableButton } from '../../../molecules';
 import { giftListStyles } from './gift-list.styles';
 import { string } from './gift-list.string';
-import { getGifts, removeGift } from '../../../../services/gift-service/gift-service';
+import { getGifts, removeGift, saveGift } from '../../../../services/gift-service/gift-service';
 import { Gift } from '../../../../utils/interfaces/gift.interface';
 import { useGiftContext } from '../../../../context/gift-context/gift-context';
 import { commonStyle } from '../../../../utils/theme/common';
+import { ID_AUTHOR } from '../../../../utils/constants/urls';
 
 export const GiftList = () => {
     const { gifts, setGifts } = useGiftContext();
+    const [gift, setGift] = useState('');
 
     useEffect(() => {
         requestGifts();
@@ -18,7 +20,8 @@ export const GiftList = () => {
 
     const requestGifts = async () => {
         try {
-            const gifts = await getGifts()
+            const gifts = await getGifts(ID_AUTHOR)
+            console.log('current gifts .... ', gifts);
             setGifts(gifts)
         } catch (err) {
 
@@ -46,11 +49,18 @@ export const GiftList = () => {
         }
     }
 
-    const onAdd = () => {
+    const onAdd = async () => {
+        const currentGift: Gift = {
+            author_id: ID_AUTHOR,
+            url: gift
+        }
         try {
+            const response = await saveGift(currentGift);
+            console.log('response .... ', response);
+            await requestGifts();
 
         } catch (err) {
-
+            console.log('.... error saving the gift ... ', err);
         }
     }
 
@@ -68,12 +78,20 @@ export const GiftList = () => {
         )
     }
 
+    const handleChangeText = (e) => {
+        console.log('eeee => ', e);
+        setGift(e);
+    }
+
     const renderAddButton = () => {
         return (
             <View style={commonStyle.buttonContainerScreen}>
-                <Button onPress={onAdd}>
+                <CustomInput name={string.giftURL} value={gift} setValue={setGift} />
+                <Button onPress={onAdd}
+                    title={string.add}></Button>
+                {/* <Button onPress={onAdd}>
                     {string.add}
-                </Button>
+                </Button> */}
             </View>
         )
     }
@@ -87,7 +105,7 @@ export const GiftList = () => {
                 <SafeAreaView style={[
                     commonStyle.containerScreens,
                 ]}>
-                    <List items={roster} renderItem={renderItem} />
+                    <List items={gifts} renderItem={renderItem} />
                 </SafeAreaView>
 
             ) : <Text>{string.noGifts}</Text>}
