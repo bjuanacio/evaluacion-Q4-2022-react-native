@@ -13,6 +13,7 @@ interface DocumentationTitleProps {
 }
 
 export const DocumentationContainer = styled.View`
+  align-items: center;
   padding: 20px;
 `;
 
@@ -35,11 +36,7 @@ export const ColorTitle = styled.Text`
 export const RowContainer = styled.View<RowContainerProps>`
   flex-direction: row;
   align-items: center;
-  ${props =>
-    props.haveBottomSpacing &&
-    `
-    margin-bottom: 10px;
-  `};
+  ${props => props.haveBottomSpacing && ` margin-bottom: 10px; `};
 `;
 
 export const ColorIndicator = styled.View<IndicatorProps>`
@@ -53,4 +50,14 @@ export const ColorIndicator = styled.View<IndicatorProps>`
 export const ExternalLink = styled.Text`
   color: blue;
   text-decoration: underline;
+`;
+
+export const Title = styled.Text`
+  font-size: 24px;
+  font-weight: bold;
+`;
+
+export const AddGifContainer = styled.View`
+  flex-direction: row;
+  margin-top: 24px;
 `;
