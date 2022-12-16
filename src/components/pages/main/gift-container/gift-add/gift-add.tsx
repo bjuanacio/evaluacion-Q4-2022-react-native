@@ -13,7 +13,9 @@ export const GiftAdd = (props: GiftAddProps) => {
   return (
     <View style={[giftAddStyles.addRowContainer]}>
       <View style={giftAddStyles.addRowItem1}>
-        <TextInput style={giftAddStyles.addTextInput}
+        <TextInput
+          testID='gifTextField'
+          style={giftAddStyles.addTextInput}
           placeholder={giftPlh}
           value={gift}
           onChangeText={setGift} />
