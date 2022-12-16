@@ -83,7 +83,7 @@ export const GiftList = () => {
             commonStyle.mainMarginHorizontal,
             commonStyle.containerScreens,
         ]}>
-            {gifts.length > 0 ? (
+            {gifts?.length > 0 ? (
                 <SafeAreaView style={[
                     commonStyle.containerScreens,
                 ]}>
