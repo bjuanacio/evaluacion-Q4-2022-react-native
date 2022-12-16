@@ -11,8 +11,15 @@ import Icon from '../../atoms/icon/icon';
 import {ScrollView} from 'react-native';
 import {useGifsList} from '../../../hooks/use-fetch-gif';
 import {useGifCreate} from '../../../hooks/use-create-gif';
+import {useGifDelete} from '../../../hooks/use-delete-git';
 import {GiftsList} from '../../molecules/gift-list/gift-list';
 import {Input} from '../../atoms/input/input';
+
+interface gifProps {
+  author_id: number;
+  id: number;
+  url: string;
+}
 
 const Home: FC = () => {
   const {gifs, getGifs} = useGifsList();
@@ -24,7 +31,11 @@ const Home: FC = () => {
 
   const updateGif = () => {
     getGifs();
-  }
+  };
+
+  const deleteGif = ({author_id, id, url}: gifProps) => {
+    useGifDelete({author_id, id, url}, updateGif);
+  };
 
   return (
     <HomeContainer>
@@ -52,7 +63,7 @@ const Home: FC = () => {
       </RowContainer>
 
       <ScrollView>
-        <GiftsList list={gifs} />
+        <GiftsList list={gifs} onPressDeleteGif={deleteGif} />
       </ScrollView>
     </HomeContainer>
   );

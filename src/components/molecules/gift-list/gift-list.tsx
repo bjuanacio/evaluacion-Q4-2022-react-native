@@ -19,9 +19,10 @@ interface GiftProps {
 
 interface GiftsListProps {
   list: GiftProps[];
+  onPressDeleteGif: ({author_id, id, url}: GiftProps) => void;
 }
 
-const GiftsList = ({list}: GiftsListProps) => {
+const GiftsList = ({list, onPressDeleteGif}: GiftsListProps) => {
   const renderSeparator = () => <Separator />;
 
   const renderEmptyState = () => (
@@ -40,7 +41,7 @@ const GiftsList = ({list}: GiftsListProps) => {
       renderItem={({item}) => {
         return (
           <ItemContainer>
-            <IconContainer onPress={() => console.log('delete')}>
+            <IconContainer onPress={() => onPressDeleteGif(item)}>
               <Icon image={DeleteIcon} description={''} />
             </IconContainer>
             <Image
