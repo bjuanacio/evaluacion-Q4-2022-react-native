@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Alert, Image, SafeAreaView, Text, View } from 'react-native';
+import { Alert, Image, SafeAreaView, FlatList, Text, View } from 'react-native';
 import { GiftAdd } from './gift-add/gift-add'
+
 import { List } from '../../../atoms'
 import { PressableButton } from '../../../molecules';
 import { giftListStyles } from './gift-container.styles';
@@ -88,7 +89,7 @@ export const GiftContainer = () => {
                 <SafeAreaView style={[
                     commonStyle.containerScreens,
                 ]}>
-                    <List items={gifts} renderItem={renderItem} />
+                    <FlatList data={gifts} renderItem={renderItem} />
                 </SafeAreaView>
 
             ) : <Text>{string.noGifts}</Text>}
