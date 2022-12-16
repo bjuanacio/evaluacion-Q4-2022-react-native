@@ -10,6 +10,7 @@ import AddIcon from '../../../assets/add-icon.png';
 import Icon from '../../atoms/icon/icon';
 import {ScrollView} from 'react-native';
 import {useGifsList} from '../../../hooks/use-fetch-gif';
+import {useGifCreate} from '../../../hooks/use-create-gif';
 import {GiftsList} from '../../molecules/gift-list/gift-list';
 import {Input} from '../../atoms/input/input';
 
@@ -20,6 +21,10 @@ const Home: FC = () => {
   useEffect(() => {
     getGifs();
   }, []);
+
+  const updateGif = () => {
+    getGifs();
+  }
 
   return (
     <HomeContainer>
@@ -34,7 +39,7 @@ const Home: FC = () => {
             styles={{}}
           />
         </InputContainer>
-        <AddGifContainer onPress={() => console.log('crear')}>
+        <AddGifContainer onPress={() => useGifCreate(urlNewGif, updateGif)}>
           <Icon
             image={AddIcon}
             description={''}
