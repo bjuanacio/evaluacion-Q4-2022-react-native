@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { createGif } from '../services/gifs-services';
 import { AUTHOR_ID } from "../utils/constants/urls";
 

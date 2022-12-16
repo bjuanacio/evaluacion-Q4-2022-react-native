@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { deleteGif } from '../services/gifs-services';
 
 export const useGifDelete = async () => {
